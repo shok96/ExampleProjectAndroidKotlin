@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "ru.andlancer.example.gamestream"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding.enabled = true
+    dataBinding.enabled = true
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation libs.appcompact
+    implementation libs.coreKtx
+    implementation libs.constraint
+    implementation libs.material
+    implementation libs.legacy
+    implementation libs.fragment
+
+    implementation libs.LifecycleViewModel
+    implementation libs.LifecycleLiveData
+    kapt libs.LifecycleCompiler
+
+    implementation libs.adapterDelegate
+    implementation libs.adapterDelegateViewBinding
+
+    implementation libs.coroutines
+
+    implementation project(":core-network")
+
+    implementation libs.glide
+    kapt libs.glideCompiler
+
+    implementation libs.dagger
+    kapt libs.daggerCompiler
+
+    implementation libs.timber
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
